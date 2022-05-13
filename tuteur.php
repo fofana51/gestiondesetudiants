@@ -1,8 +1,3 @@
-<?php 
-
-include ("./config.php");
-
-    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +6,12 @@ include ("./config.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="./style/index.css">
-    <title>troisieme page</title>
+    <title>cinquieme page</title>
 </head>
 <body>
+  <?php
+  include ("./config.php");
+  ?>
     <div class="grand">
       <ul class="nav nav-pills">
         <li class="nav-item">
@@ -29,33 +27,45 @@ include ("./config.php");
       </ul></div>
       <div class="quatre"><span></span></div>
       <div class="petit">
-         <center> <h1>La fiche <br> d'Inscription 
-              
-          </h1></center>
+         <center> <h1> Fiche d'Enregistrement 
+                </h1></center>
 </div>
+
+
 <center>
-    <form method="post" action="traitement_admin.php">
+    <form action="" method="post">
+     
      <div class="mb-3">
-       <input type="text" id="inputFirstName" class="form-control" name="nom" placeholder="nom">
+       <input type="text" id="disabledTextInput" class="form-control"  name="nom"placeholder="Nom">
      </div>
      <div class="mb-3">
-       <input type="text" id="inputLastName" class="form-control" name="prenom" placeholder="prenom">
-     </div>
-     <div class="mb-3">
-        <input type="email" id="inputEmail" class="form-control" name="e_mail" placeholder="e-mail">
-      </div>
+       <input type="text" id="disabledTextInput" class="form-control" name="prenom" placeholder="Prenom">
+     </div> 
       <div class="mb-3">
-        <input type="password" id="inputPassword" class="form-control" name="passe" placeholder="Mot_de_passe">
+        <input type="tel" id="disabledTextInput" class="form-control" name="telephone" placeholder="telephone">
       </div>
-      <div class="mb-3">
-        <input type="password" id="inputPasswordConfirm" class="form-control" name="cpasse" placeholder="Confirmer_mot_de_passe">
-      </div>
-    <input type="submit" name="submit" class="btn btn-primary" value="Valider"> 
+      <input type="submit" name="submit" class="btn btn-primary" value="Valider"> 
+    </div>
  </form>
 </center>
+<?php
+if(isset($_POST['submit'])){
+$nom= $_POST['nom'];
+ $prenom=$_POST['prenom'];
+$tel=$_POST['telephone'];
+
+}
+$sql="INSERT INTO `tuteur` ( `nom`, `prenom`, `telephone`)
+ VALUES('$nom','$prenom', '$tel')";
+$result= mysqli_query($conn,$sql);
+    if($result){echo"tuteur enregistré";}
+    else{echo"tuteur non enregistré";}
+
+?>
+
+
 <div class="quatre"><span></span></div>
  <center><p>Unité de Formation et de Recherche/Sciences De la Santé 2022 Tous Droits Réservés</p></center>
-
     
 </body>
 </html>
