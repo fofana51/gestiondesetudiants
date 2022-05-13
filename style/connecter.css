@@ -1,0 +1,48 @@
+
+.un{
+    color: green;
+}
+.deux{
+    color: red;
+}
+
+.grand{
+    width: 90%;
+    margin: auto;
+}
+.quatre{
+    border:0.5px solid black;
+    height:0px;
+    margin-right: 8%;
+    margin-left: 8%;
+  }
+  .petit{
+      background-color: green;
+      color: white;
+      width: 84%;
+      margin: auto;
+  } 
+ 
+  
+  p{
+      font-size: 20px;
+      color: black;
+  }
+  form{
+      width: 30% !important;
+      margin: auto !important;
+  }
+ button{
+     background-color: green !important;
+     color: white !important;
+     margin-top: 20px;
+     margin-bottom: 30px;
+ }
+ .mb-3{
+     border: 3px solid green ;
+     margin:20px;
+ }
+ ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black !important;
+    opacity: 1 !important; /* Firefox */
+  }
