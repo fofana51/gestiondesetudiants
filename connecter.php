@@ -1,3 +1,37 @@
+
+ <?php
+ include ("./config.php");
+ 
+ 
+ if(isset($_POST['submit'])){
+
+  if(!empty($_POST['e_mail']) && !empty($_POST['passe'])){
+
+  
+ $email=$_POST['e_mail'];
+ $password=md5( $_POST['passe']);
+
+ $sql="SELECT * FROM administrateur WHERE e_mail='$email' and passe='$password'";
+ $result= mysqli_query($conn,$sql);
+$neimata=mysqli_num_rows($result);
+
+ 
+ if($neimata>0){
+   
+    
+    header("Location: ./accueil.php"); 
+
+   }
+    
+
+
+else{ 
+  print($neimata);  
+ }
+  }
+}
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +43,6 @@
     <title>deuxieme page</title>
 </head>
 <body>
-  <?php
-
-?>
     <div class="grand">
       <ul class="nav nav-pills">
         <li class="nav-item">
@@ -33,12 +64,16 @@
  <center>
  <form method="post" action="">
       <div class="mb-3">
-        <input type="text" id="disabledTextInput" class="form-control" name="e_mail" placeholder="E-mail">
+        <input type="text" id="disabledTextInput" class="form-control" name="e_mail" placeholder="E-mail" required>
       </div>
       <div class="mb-3">
-      <input type="text" id="disabledTextInput" class="form-control" name="passe" placeholder="Mot de passe">
+      <input type="password" id="disabledTextInput" class="form-control" name="passe" placeholder="Mot de passe" required>
       </div>
-      
+      <?php 
+         if(isset($error)){
+           echo'<p>'.$error.'</p>';
+         }
+      ?>
        
       <input type="submit" name="submit" class="btn btn-primary" value="Valider">
   </form>
@@ -47,18 +82,5 @@
 <div class="quatre"><span></span></div>
  <center><p>Unité de Formation et de Recherche/Sciences De la Santé 2022 Tous Droits Réservés</p></center>
  
- <?php
- include ("./config.php");
- 
- if(isset($_POST['submit'])){
- $email=$_POST['e_mail'];
- $password=$_POST['passe'];
- }
- $sql="SELECT `e_mail`, `passe`FROM `administrateur`
-  VALUES('$email','$password')";
- $result= mysqli_query($conn,$sql);
-     if($result){echo"connexion réussie";}
-     else{echo"connexion échouée";}
- ?>
 </body>
 </html>

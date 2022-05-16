@@ -71,4 +71,6 @@ button{
 #cote{
   display: flex;
 }
-
+#tuteur{
+  border: 0.5px solid green !important;
+}
