@@ -50,16 +50,19 @@
 </center>
 <?php
 if(isset($_POST['submit'])){
+  if(!empty($_POST['e_mail']) && !empty($_POST['passe'])){
 $nom= $_POST['nom'];
  $prenom=$_POST['prenom'];
 $tel=$_POST['telephone'];
 
-}
+
 $sql="INSERT INTO `tuteur` ( `nom`, `prenom`, `telephone`)
  VALUES('$nom','$prenom', '$tel')";
 $result= mysqli_query($conn,$sql);
     if($result){echo"tuteur enregistré";}
     else{echo"tuteur non enregistré";}
+  }
+}
 
 ?>
 

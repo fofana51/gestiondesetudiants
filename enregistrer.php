@@ -1,8 +1,11 @@
 <?php 
 
 include ("./config.php");
-?>
 
+      $query="SELECT * FROM tuteur";
+      $result=mysqli_query($conn,$query) or die(mysqli_connect_error($conn));
+      $rows= mysqli_fetch_all($result ,MYSQLI_ASSOC);
+         ?>
 
 
 <!DOCTYPE html>
@@ -16,22 +19,29 @@ include ("./config.php");
     <title>cinquieme page</title>
 </head>
 <body>
+
+
+
+
 <?php 
 
 if(isset($_POST['submit'])){
-  $nom= $_POST['nom'];
-   $prenom=$_POST['prenom'];
-   $email=$_POST['email'];
-   $date=$_POST['date_naissance'];
-  $tel=$_POST['telephone'];
-  $niveau=$_POST['niveau_etude'];
+ 
+  $nom= $_POST["nom"];
+   $prenom=$_POST["prenom"];
+   $email=$_POST["email"];
+   $date=$_POST["date_naissance"];
+  $tel=$_POST["telephone"];
+  $niveau=$_POST["niveau_etude"];
+  $tuteur=$_POST["id"];
   
-  }
-  $sql="INSERT INTO `etudiante` ( `nom`, `prenom`,`e_mail`,`prenom`, `date_naissance`,`niveau_etude`)
-   VALUES('$nom','$prenom','$email','$date','$tel','$niveau')";
+  
+  $sql="INSERT INTO `etudiante` ( `nom`, `prenom`,`email`, `date_naissance`,`numero`,`niveau_etude`,`id_tuteur`)
+   VALUES('$nom','$prenom','$email','$date','$tel','$niveau','$tuteur' )";
   $result= mysqli_query($conn,$sql);
       if($result){echo"etudiant enregistré";}
       else{echo"etudiant non enregistré";}
+    }
 
     ?>
     <div class="grand">
@@ -75,14 +85,17 @@ if(isset($_POST['submit'])){
       <div class="mb-3">
         <input type="text" id="disabledTextInput" class="form-control" name="niveau_etude"  placeholder="Niveau etude">
       </div>
-      <div id="">
-      <div class="mb-3">
-       <select>
-         <option value="id_tuteur"></option>
-       </select>
-      </div>
+
+      <select name="id" id=""  class="form-control">
+        <option value="-1">choisir le tuteur</option>
+        <?php foreach($rows as $row) { ?>
+          <option value="<?= $row['id']?>"> <?= $row['nom']?> <?= $row['prenom']?></option>
+        <?php  }?>
+        
+      </select>
+      
       <a href="./tuteur.php"> <h4 id="tuteur">ajouter_tuteur</h4></a> 
-    </div>
+    
       
      <button type="submit" name="submit"class="btn btn-primary">Valider</button> 
     </div>
